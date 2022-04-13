@@ -1,3 +1,4 @@
+import random
 for_input = ('\n 1. 37 mm Gun M3 (37 mm, USA)\n'+
             ' 2. Ordnance QF 2-pounder (40 mm, UK)\n'+
             ' 3. 7.5 cm KwK 42 (75 mm, Germany)\n'+
@@ -12,10 +13,10 @@ for_input = ('\n 1. 37 mm Gun M3 (37 mm, USA)\n'+
 
 data_tank = {'model': input('Input name of your TANK: '),
              'weapon': input('Change gun for your TANK:\n'+ for_input),
-             'type_of_armor': input('Input type_of_armor for your TANK from:\n' +
-                                    ' 1. HArmor\n 2. CArmor\n 3. SArmor\n'+
-                                    '\n 4. More about armors\nYour choise: '),
-             'thickness': int(input('Input thickness of armor for your TANK: \n'))
+            #  'type_of_armor': input('Input type_of_armor for your TANK from:\n' +
+            #                         ' 1. HArmor\n 2. CArmor\n 3. SArmor\n'+
+            #                         '\n 4. More about armors\nYour choise: '),
+             'thickness': random.randint(15, 26)
             }
 
 weapons = {

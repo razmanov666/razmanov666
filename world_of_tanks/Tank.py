@@ -36,33 +36,40 @@ class Tank():
         self.gun = Gun(weapon['caliber'], weapon['gun_length'])
         self._is_gun_loaded = False
         self.health = 5000 - 4 * weapon['gun_length'] - 2 ** (thickness/2.7)
-        self.ammos = self.__load_ammos()
-        # self.armors = self.__add_armors(thickness)
-        self.armors = self.__add_armors()
+        self.ammos = self.__load_ammos(weapon)
+        self.armors = self.__add_armors(thickness)
+        # self.armors = self.__add_armors()
         
     def load_gun(self, type_ammo: str):
         self._is_gun_loaded = True
     
-    def __add_armors(thickness):
+    def __add_armors(self, thickness):
         return [HArmor(thickness), CArmor(thickness), SArmor(thickness)]
     
-    def __load_ammos(self):
-        return {'AP': APCartridge('213','123'): 10, 
-                HEСartridge('213','123'): 10, 
-                HEATCartridge('213','123'): 10}
+    def __load_ammos(self, weapon: dict):
+        return {'AP': {'object': APCartridge(weapon['Name'], 
+                                             weapon['APCartridge']), 
+                       'amount': 10}, 
+                'HE': {'object': HEСartridge(weapon['Name'], 
+                                             weapon['HECartridge']), 
+                       'amount': 10},
+                'HEAT': {'object': HEATCartridge(weapon['Name'], 
+                                             weapon['HEATCartridge']), 
+                       'amount': 10}}
 
     def show_tank_info(self):
         print('\nTank has model: ' + self.model)
-        # for armor in self.armors:
-        #     print(armor.type_armor)
-        #     print(armor.thickness)
+        for armor in self.armors:
+            print(armor.type_armor + ' (' + str(armor.thickness) + ')')
         print('HP: ' + str(self.health))
         print('\nTank has gun: ')
         print(' Caliber: ' + str(self.gun.caliber) + '\n'+
               ' Length of gun: ' + str(self.gun.gun_length))
         
-        print('Ammos:\n')
-        print(dict(self.ammos[]))
+        # print('\nAmmos:')
+        # for ammo in self.ammos.items():
+        #     print('\n Gun model: '+self.ammos['AP']['object'].gun + 
+        #          '\n Type ammo: '+self.ammos['AP']['object'].type_ammo)
 
 if __name__ == "__main__":
     health = 5000 - 2 * 'gun_length' - 5 * 'thickness'
